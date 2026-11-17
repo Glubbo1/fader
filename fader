@@ -1,0 +1,47 @@
+#!/bin/bash
+
+START="$1"
+END="$2"
+TIME="$3"
+IO="$4"
+CURVOL="$(osascript -e "output volume of (get volume settings)")"
+HELP="usage: PLACEHOLDER [starting volume] [ending volume] [seconds between steps] [in/out]"
+osascript -e "set volume output volume $START"
+
+#figure out how many steps
+#DIFF=$[$START-$END]
+#echo $DIFF
+
+
+if [ $4 = in ]; then
+	#fade in
+	osascript -e "set volume output volume $START"
+	while [ "$CURVOL" -lt "$END" ]
+	do
+		CURVOL="$[ $CURVOL + 5 ]"
+	        osascript -e "set volume output volume $CURVOL"
+	        echo $CURVOL
+	        sleep "$TIME"
+	done
+
+else
+	if [ $4 = out ]; then
+		osascript -e "set volume output volume $START"
+		#fade out
+		while [ "$CURVOL" -gt "$END" ]
+		do
+			CURVOL="$[ $CURVOL - 5 ]"
+			osascript -e "set volume output volume $CURVOL"
+			echo $CURVOL
+			sleep "$TIME"
+		done
+	else
+		if [ $1 = h ]; then
+	        	echo $HELP
+			exit 1
+		else
+			echo unknown flags
+		fi
+
+	fi
+fi
