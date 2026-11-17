@@ -5,7 +5,7 @@ END="$2"
 TIME="$3"
 IO="$4"
 CURVOL="$(osascript -e "output volume of (get volume settings)")"
-HELP="usage: PLACEHOLDER [starting volume] [ending volume] [seconds between steps] [in/out]"
+HELP="usage: fader [starting volume] [ending volume] [seconds between steps] [in/out]"
 osascript -e "set volume output volume $START"
 
 #figure out how many steps
