@@ -15,3 +15,5 @@ What it does
   the [in/out] value is either in or out.
 
   if you put the letter "h" in the 1st variable spot it echos the usage message at the top of this document. it will result in an error, but it doesn't cause any problems so don't worry about it.
+
+put it in your path if you wanna use it globally
